@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 14:51:45 by vparis            #+#    #+#             */
-/*   Updated: 2017/11/12 15:29:01 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/04 04:54:00 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t size)
 	char const	*limit_sb;
 
 	if (size < 1)
-		return (NULL);
+		return ((char *)haystack);
 	if (*needle == 0)
 		return ((char *)haystack);
 	limit_sb = haystack + size;

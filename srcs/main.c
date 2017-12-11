@@ -5,27 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 04:15:51 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/04 04:26:59 by vparis           ###   ########.fr       */
+/*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
+/*   Updated: 2017/12/11 18:30:24 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "mlx.h"
+#include "ft_mlx.h"
 #include "fdf.h"
 
 int		main(void)
 {
-	void	*mlx;
-	void	*win;
+	t_mlx	mlx;
 
-	if ((mlx = mlx_init()) == NULL)
-		exit(0);
-	if ((win = mlx_new_window(mlx, WIDTH, HEIGHT, TITLE)) != NULL)
-	{
-		mlx_loop(mlx);
-		mlx_destroy_window(mlx, win);
-	}
-	return (0);
+	ft_mlx_init(&mlx, WIDTH, HEIGHT, TITLE);
+	return (SUCCESS);
 }
