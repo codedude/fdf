@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2017/12/04 04:55:32 by vparis           ###   ########.fr        #
+#    Updated: 2017/12/15 17:29:40 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIBFT_SRCS	= ft_putchar_fd.c ft_putrevendl_fd.c \
 			ft_strrev.c ft_strdup.c \
 			ft_strnew_fast.c ft_strjoin.c \
 			ft_strcmp.c ft_strrchr.c \
-			ft_strcpy.c \
+			ft_strcpy.c ft_gnl.c \
 			ft_strdel.c ft_strtrim.c \
 			ft_strnew.c ft_strncmp.c \
 			ft_memccpy_fast.c ft_memset.c \

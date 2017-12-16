@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 15:48:34 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/12 16:25:14 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/15 17:33:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 void	ft_mlx_pixel_init(t_pixel *pix)
 {
 	ft_bzero((void *)pix, sizeof(t_pixel));
+}
+
+void	ft_mlx_pixel3_init(t_pixel3 *pix3)
+{
+	ft_bzero((void *)pix3, sizeof(t_pixel3));
 }
 
 t_color	ft_mlx_getcolor(int r, int g, int b)

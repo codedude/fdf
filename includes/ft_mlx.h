@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/12 22:41:06 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/15 18:45:35 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ typedef struct	s_pixel {
 	t_color		c;
 }				t_pixel;
 
+typedef struct	s_pixel3 {
+	t_f64		x;
+	t_f64		y;
+	t_f64		z;
+	t_color		c;
+}				t_pixel3;
+
 /*
 ** MLX and window management
 */
@@ -68,6 +75,7 @@ void			ft_mlx_string(t_mlx *mlx, int win, t_pixel *pix, char *str);
 */
 
 void			ft_mlx_pixel_init(t_pixel *pix);
+void			ft_mlx_pixel3_init(t_pixel3 *pix3);
 t_color			ft_mlx_getcolor(int r, int g, int b);
 
 /*

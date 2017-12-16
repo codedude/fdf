@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 22:22:13 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/02 16:46:48 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/15 17:29:25 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,22 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstshift(t_list **lst, void (*del)(void *, size_t));
 void				ft_lstdel_raw(void *data, size_t size);
+
+/*
+** Input
+*/
+
+# define BUFF_SIZE			(1024)
+
+typedef	struct		s_fd_l {
+	struct s_fd_l	*next;
+	struct s_fd_l	*previous;
+	t_list			*data;
+	ssize_t			pos;
+	int				fd;
+}					t_fd_list;
+
+int					ft_gnl(int const fd, char **line);
 
 /*
 ** Memory manipulation

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_stack.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/15 18:13:03 by vparis           ###   ########.fr       */
+/*   Created: 2017/12/15 18:06:44 by vparis            #+#    #+#             */
+/*   Updated: 2017/12/15 18:12:20 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FT_STACK_H
+# define FT_STACK_H
 
-# include "ft_mlx.h"
+typedef struct		s_stack {
+	struct s_stack	*previous;
+	char			*str;
+}					t_stack;
 
-# define WIDTH		600
-# define HEIGHT		400
-# define TITLE		"FDF DX400"
-
-int		map_get(char *filename, t_pixel3 ***map);
+char				*ft_stackpop(t_stack **stack);
+int					ft_stackpush(t_stack **stack, char *str);
+void				ft_stackclear(t_stack **stack);
 
 #endif
