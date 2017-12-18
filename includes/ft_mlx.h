@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 00:17:22 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 12:54:02 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 # define C_WHITE		0x00FFFFFF
 # define C_BLACK		0x00000000
 # define C_GREY			0x00999999
+# define C_MOUNT		0x0080461B
+# define C_WATER		0x002EB3BF
+# define C_GRASS		0x0078EB60
+# define C_SNOW			0x00DDDDDD
+# define C_DEEP			0x00003F69
 
 typedef struct	s_win {
 	void		*win;

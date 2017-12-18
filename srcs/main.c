@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 00:29:36 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 12:54:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ int		main(int argc, char **argv)
 	mlx_key_hook(data.mlx.win[MAIN_WIN].win, &ft_mlx_exit, (void *)&data);
 	mlx_loop_hook(data.mlx.mlx, &loop, (void *)&data);
 	mlx_loop(&(data.mlx));
-
 	return (EXIT_SUCCESS);
 }

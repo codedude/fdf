@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:53:53 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 00:19:34 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 12:45:52 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define MATRIX_11		0x11
 # define MATRIX_L		0xF0
 # define MATRIX_C		0x0F
-
 # define MATRIX_TYPE	t_f64
 # define MATRIX_SET		1
 # define MATRIX_NOSET	0
