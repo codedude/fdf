@@ -1,5 +1,6 @@
+libft/*.o
+libft/*.a
 *.o
-*.a
 fdf
 demo
 *.tgz
