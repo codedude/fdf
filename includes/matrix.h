@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:53:53 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 12:45:52 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 14:58:08 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_env {
 	t_canvas	canvas;
 	t_screen	screen;
 	t_vertex	**obj;
+	t_vertex	**img;
 	t_u64		obj_size[2];
 	t_vec3		world;
 	t_vec3		camera;

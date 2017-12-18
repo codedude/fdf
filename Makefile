@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2017/12/18 00:29:51 by vparis           ###   ########.fr        #
+#    Updated: 2017/12/18 15:29:38 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,16 @@ MLXD		=	minilibx_macos
 
 SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/ft_line.c $(SRCD)/ft_stack.c $(SRCD)/map_parse.c \
-				$(SRCD)/matrix.c $(SRCD)/vertex.c $(SRCD)/env.c
+				$(SRCD)/matrix.c $(SRCD)/vertex.c $(SRCD)/env.c \
+				$(SRCD)/compute.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
 CFLAGS		+=	-I$(INCD) -I$(LIBFTD) -I$(MLXD)
 
 #Warnigs and debug
-LDFLAGS		+=	-Wextra -Wall
+LDFLAGS		+=	-Wextra -Wall -g
 LDLIBS		+=	$(LIBFTD)/libft.a $(MLXD)/libmlx.a -lm \
-				-lmlx -framework OpenGL -framework AppKit
+				-lmlx -framework OpenGL -framework AppKit -fsanitize=address
 
 .PHONY: clean fclean re
 

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:34:49 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 00:24:46 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 15:31:39 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	map_parse(t_stack **stack, t_env *map, int n)
 		s = 0;
 		while (buff[s] != NULL)
 			s++;
-		map->obj_size[1] = s;
+		map->obj_size[1] = (t_u64)s;
 		map_fill(&(map->obj[n - i - 1]), buff, i, s);
 		free(buff);
 		i++;
@@ -100,7 +100,7 @@ int			map_get(char *filename, t_env *map)
 		ft_stackclear(&stack);
 		return (ERROR);
 	}
-	map->obj_size[0] = n;
+	map->obj_size[0] = (t_u64)n;
 	map_parse(&stack, map, n);
 	return (SUCCESS);
 }

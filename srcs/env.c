@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 12:52:14 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 15:25:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ static t_color	env_getcolor_alt(t_f64 z)
 	return (c);
 }
 
+static int		env_init_img(t_vertex ***img, t_u64 obj_size[2])
+{
+	t_u64	i;
+
+	if ((*img = (t_vertex **)malloc(sizeof(t_vertex *) * obj_size[0])) == NULL)
+		return (ERROR);
+	i = 0;
+	while (i < obj_size[0])
+	{
+		if (((*img)[i] = (t_vertex *)malloc(sizeof(t_vertex) * obj_size[1]))
+			== NULL)
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
 void			env_init_obj(t_vertex **obj, t_u64 obj_size[2])
 {
 	t_u64	i;
@@ -57,11 +74,16 @@ void			env_init_obj(t_vertex **obj, t_u64 obj_size[2])
 	}
 }
 
-void			env_init(t_env *env, int width, int height)
+int				env_init(t_env *env, int width, int height)
 {
 	env->screen.width = (t_u32)width;
 	env->screen.height = (t_u32)height;
+	env->canvas.width = (t_f64)width;
+	env->canvas.height = (t_f64)height;
 	vec3_set(&(env->world), 0, 0, 0);
 	vec3_set(&(env->camera), 0, 0, -40);
 	env_init_obj(env->obj, env->obj_size);
+	if (env_init_img(&(env->img), env->obj_size) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
 }
