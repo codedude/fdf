@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_line.c                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 22:38:30 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/17 22:48:55 by vparis           ###   ########.fr       */
+/*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
+/*   Updated: 2017/12/18 00:28:10 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 #include "ft_mlx.h"
 #include "fdf.h"
+#include "matrix.h"
 
-void	ft_mlx_line(t_mlx *mlx, int win, t_pixel *src, t_pixel *dest)
+void	env_init(t_env *env, int width, int height)
 {
-	int		dx;
-	int		dy;
-	t_pixel	pix;
-
-	dx = dest->x - src->x;
-	dy = dest->y - src->y;
-	pix.x = src->x;
-	pix.y = src->y;
-	pix.c = src->c;
-	while (pix.x <= dest->y)
-	{
-		pix.y = src->y + dy * (pix.x - src->x) / dx;
-		ft_mlx_pixel(mlx, win, &pix);
-		pix.x += 1;
-	}
+	env->screen.width = (t_u32)width;
+	env->screen.height = (t_u32)height;
+	vec3_set(&(env->world), 0, 0, 0);
+	vec3_set(&(env->camera), 0, 0, -40);
 }

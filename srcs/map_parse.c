@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:34:49 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/15 18:55:06 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/18 00:24:46 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft.h"
 #include "ft_mlx.h"
 #include "fdf.h"
+#include "matrix.h"
 #include "ft_stack.h"
 
 static int	map_read(char *filename, t_stack **stack)
@@ -39,46 +40,52 @@ static int	map_read(char *filename, t_stack **stack)
 	return (n);
 }
 
-static int	map_fill(t_pixel3 **map, char **buff, int l)
+static int	map_fill(t_vertex **map, char **buff, int l, int s)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
-	i = 0;
-	while (buff[i] != NULL)
-		i++;
-	if ((*map = (t_pixel3 *)malloc(sizeof(t_pixel3) * i)) == NULL)
+	if ((*map = (t_vertex *)malloc(sizeof(t_vertex) * s)) == NULL)
 		return (ERROR);
 	i = 0;
 	while (buff[i] != NULL)
 	{
-		(*map)[i].x = (t_f64)i;
-		(*map)[i].y = (t_f64)l;
-		(*map)[i].z = (t_f64)ft_atoi(buff[i]);
-		(*map)[i].c = C_WHITE;
+		(*map)[i].vec3.x = (t_f64)i;
+		(*map)[i].vec3.y = (t_f64)l;
+		(*map)[i].vec3.z = (t_f64)ft_atoi(buff[i]);
+		if ((tmp = ft_strchr(buff[i], ',')) != NULL)
+			(*map)[i].c = (t_color)ft_atoi_base(tmp + 1, CHARSET_BASE_16U);
+		else
+			(*map)[i].c = (t_color)C_WHITE;
 		free(buff[i]);
 		i++;
 	}
 	return (SUCCESS);
 }
 
-static int	map_parse(t_stack **stack, t_pixel3 **map, int n)
+static int	map_parse(t_stack **stack, t_env *map, int n)
 {
 	char	**buff;
 	int		i;
+	int		s;
 
 	i = 0;
 	while (i < n)
 	{
 		if ((buff = ft_strsplit_whitespaces(ft_stackpop(stack))) == NULL)
 			return (ERROR);
-		map_fill(&map[n - i - 1], buff, i);
+		s = 0;
+		while (buff[s] != NULL)
+			s++;
+		map->obj_size[1] = s;
+		map_fill(&(map->obj[n - i - 1]), buff, i, s);
 		free(buff);
 		i++;
 	}
 	return (SUCCESS);
 }
 
-int			map_get(char *filename, t_pixel3 ***map)
+int			map_get(char *filename, t_env *map)
 {
 	int			n;
 	t_stack		*stack;
@@ -88,11 +95,12 @@ int			map_get(char *filename, t_pixel3 ***map)
 		ft_stackclear(&stack);
 		return (ERROR);
 	}
-	if ((*map = (t_pixel3 **)malloc(sizeof(t_pixel3 *) * n)) == NULL)
+	if ((map->obj = (t_vertex **)malloc(sizeof(t_vertex *) * n)) == NULL)
 	{
 		ft_stackclear(&stack);
 		return (ERROR);
 	}
-	map_parse(&stack, *map, n);
+	map->obj_size[0] = n;
+	map_parse(&stack, map, n);
 	return (SUCCESS);
 }

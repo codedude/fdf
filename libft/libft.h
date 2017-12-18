@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 22:22:13 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/15 17:29:25 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/17 23:40:24 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ t_u32				ft_find_next_prime(t_u32 n);
 */
 
 typedef struct		s_list {
-	struct s_list	*next;
 	void			*content;
 	size_t			content_size;
+	struct s_list	*next;
 }					t_list;
 
 t_list				*ft_lstnew(void const *content, size_t content_size);

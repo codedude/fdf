@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_line.c                                          :+:      :+:    :+:   */
+/*   vertex.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/12 22:38:30 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/17 22:48:55 by vparis           ###   ########.fr       */
+/*   Created: 2017/12/17 22:22:24 by vparis            #+#    #+#             */
+/*   Updated: 2017/12/18 00:17:57 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft.h"
 #include "ft_mlx.h"
-#include "fdf.h"
+#include "matrix.h"
 
-void	ft_mlx_line(t_mlx *mlx, int win, t_pixel *src, t_pixel *dest)
+void			vec3_set(t_vec3 *pt, t_f64 x, t_f64 y, t_f64 z)
 {
-	int		dx;
-	int		dy;
-	t_pixel	pix;
+	pt->x = x;
+	pt->y = y;
+	pt->z = z;
+}
 
-	dx = dest->x - src->x;
-	dy = dest->y - src->y;
-	pix.x = src->x;
-	pix.y = src->y;
-	pix.c = src->c;
-	while (pix.x <= dest->y)
-	{
-		pix.y = src->y + dy * (pix.x - src->x) / dx;
-		ft_mlx_pixel(mlx, win, &pix);
-		pix.x += 1;
-	}
+void			vertex_set(t_vertex *pt, t_f64 x, t_f64 y, t_f64 z, t_color c)
+{
+	pt->vec3.x = x;
+	pt->vec3.y = y;
+	pt->vec3.z = z;
+	pt->c = c;
 }
