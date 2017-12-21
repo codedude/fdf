@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/12 19:09:09 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/21 23:52:56 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,32 @@ int		main(void)
 
 	mlx_loop(&mlx);
 	return (SUCCESS);
+}
+
+/*
+** DEBUG, to remove
+*/
+
+void		matrix_print(int type, t_matrix mat)
+{
+	int	l;
+	int	c;
+	int	i;
+	int	j;
+
+	matrix_getsize(type, &l, &c);
+	i = 0;
+	while (i < l)
+	{
+		j = 0;
+		while (j < c)
+		{
+			printf("%.4F", mat[i][j]);
+			if (j < c - 1)
+				printf(", ");
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }

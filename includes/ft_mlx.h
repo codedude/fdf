@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 12:54:02 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/21 23:56:43 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "ft_mlx_key.h"
+# include "matrix.h"
 
 # define MLX_MAX_WINDOW	4
 # define MAIN_WIN		0
@@ -59,6 +60,20 @@ typedef struct	s_pixel3 {
 	t_color		c;
 }				t_pixel3;
 
+typedef struct	s_vertex {
+	t_vec3		vec3;
+	t_color		c;
+}				t_vertex;
+
+typedef struct	s_env {
+	t_screen	screen;
+	t_vertex	**obj;
+	t_vertex	**img;
+	t_u64		obj_size[2];
+	t_vec3		world;
+	t_vec3		camera;
+}				t_env;
+
 /*
 ** MLX and window management
 */
@@ -88,6 +103,6 @@ t_color			ft_mlx_getcolor(int r, int g, int b);
 ** Line drawing
 */
 
-void			ft_mlx_line(t_mlx *mlx, int win, t_pixel *src, t_pixel *dest);
+void			ft_mlx_line(t_mlx *mlx, int win, t_vertex *src, t_vertex *dest);
 
 #endif

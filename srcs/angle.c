@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vertex.c                                           :+:      :+:    :+:   */
+/*   angle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/17 22:22:24 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 00:17:57 by vparis           ###   ########.fr       */
+/*   Created: 2017/12/21 17:57:00 by vparis            #+#    #+#             */
+/*   Updated: 2017/12/21 18:39:15 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mlx.h"
+#include <math.h>
+#include "libft.h"
 #include "matrix.h"
 
-void			vec3_set(t_vec3 *pt, t_f64 x, t_f64 y, t_f64 z)
+t_f64		deg_to_rad(t_f64 x)
 {
-	pt->x = x;
-	pt->y = y;
-	pt->z = z;
+	return (x * DEG_TO_RAD);
 }
 
-void			vertex_set(t_vertex *pt, t_f64 x, t_f64 y, t_f64 z, t_color c)
+t_f64		rad_to_deg(t_f64 x)
 {
-	pt->vec3.x = x;
-	pt->vec3.y = y;
-	pt->vec3.z = z;
-	pt->c = c;
+	return (x * RAD_TO_DEG);
+}
+
+t_f64		ft_cos(t_f64 x)
+{
+	return (cos(deg_to_rad(x)));
+}
+
+t_f64		ft_sin(t_f64 x)
+{
+	return (sin(deg_to_rad(x)));
 }

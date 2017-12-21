@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 15:45:39 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/21 20:01:11 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ int		loop(void *param)
 		j = 0;
 		while (j < data->env.obj_size[1])
 		{
-			mlx_pixel_put(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
-				(int)data->env.img[i][j].vec3.x, (int)data->env.img[i][j].vec3.y,
-				C_WHITE);
+			if (i + 1 < data->env.obj_size[0])
+				ft_mlx_line(data->mlx.mlx, MAIN_WIN,
+					&(data->env.img[i][j]), &(data->env.img[i + 1][j]));
+			if (j + 1 < data->env.obj_size[1])
+				ft_mlx_line(data->mlx.mlx, MAIN_WIN,
+					&(data->env.img[i][j]), &(data->env.img[i][j + 1]));
 			j++;
 		}
 		i++;

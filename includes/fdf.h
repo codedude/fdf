@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 14:50:16 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/22 00:11:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "ft_mlx.h"
 # include "matrix.h"
 
-# define WIDTH		600
-# define HEIGHT		400
+# define WIDTH		800
+# define HEIGHT		600
 # define TITLE		"FDF DX400"
 
 # define MARGE		200

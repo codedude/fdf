@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 22:22:13 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/17 23:40:24 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/21 17:57:26 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef enum				e_bool
 # define ZERO_INT			(0)
 # define ZERO_FLOAT			(0.0)
 # ifndef PI
-#  define PI				(3.14159265359)
+#  define PI				(3.141592653589793)
 # endif
 
 t_u32				ft_abs(t_i32 n);

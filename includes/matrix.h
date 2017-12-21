@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:53:53 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 14:58:08 by vparis           ###   ########.fr       */
+/*   Updated: 2017/12/21 23:55:11 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_MATRIX_H
 
 # include "libft.h"
-# include "ft_mlx.h"
 
 # define MATRIX_44		0x44
 # define MATRIX_33		0x33
@@ -25,16 +24,11 @@
 # define MATRIX_11		0x11
 # define MATRIX_L		0xF0
 # define MATRIX_C		0x0F
-# define MATRIX_TYPE	t_f64
+# define MATRIX_T		t_f64
 # define MATRIX_SET		1
 # define MATRIX_NOSET	0
 
 typedef t_f64**	t_matrix;
-
-typedef struct	s_canvas {
-	t_f64		width;
-	t_f64		height;
-}				t_canvas;
 
 typedef struct	s_screen {
 	t_u32		width;
@@ -47,34 +41,66 @@ typedef struct	s_vec3 {
 	t_f64		z;
 }				t_vec3;
 
-typedef struct	s_vertex {
-	t_vec3		vec3;
-	t_color		c;
-}				t_vertex;
-
-typedef struct	s_env {
-	t_canvas	canvas;
-	t_screen	screen;
-	t_vertex	**obj;
-	t_vertex	**img;
-	t_u64		obj_size[2];
-	t_vec3		world;
-	t_vec3		camera;
-}				t_env;
-
-
+/*
+** matrix.c
+*/
 
 t_matrix		matrix_new(int type, int init);
 void			matrix_del(int type, t_matrix *mat);
 void			matrix_getsize(int type, int *l, int *c);
-
-void			vec3_set(t_vec3 *pt, t_f64 x, t_f64 y, t_f64 z);
-void			vertex_set(t_vertex *pt, t_f64 x, t_f64 y, t_f64 z, t_color c);
+void			matrix_mul3_vec3(t_matrix mat, t_vec3 *v);
+void			matrix_mul3(t_matrix m1, t_matrix m2);
 
 /*
-** DEBUG, to remove
+** matrix_rot.c
 */
 
-void			matrix_print(int type, t_matrix mat);
+# define		ROT_X	1
+# define		ROT_Y	2
+# define		ROT_Z	3
+
+t_matrix		matrix_rot(t_vec3 *ang);
+
+/*
+** matrix_scale.c
+*/
+
+t_matrix		matrix_id3(t_matrix mat);
+t_matrix		matrix_scale3(t_matrix mat, t_vec3 *v);
+
+/*
+** angle.c
+*/
+
+# ifndef PI
+#  define PI	(3.141592653589793)
+# endif
+# define		DEG_TO_RAD (PI / 180.)
+# define		RAD_TO_DEG (180. / PI)
+
+t_f64			deg_to_rad(t_f64 x);
+t_f64			rad_to_deg(t_f64 x);
+t_f64			ft_cos(t_f64 x);
+t_f64			ft_sin(t_f64 x);
+
+/*
+** vec3_1.c
+*/
+
+t_vec3			*vec3_new(void);
+void			vec3_del(t_vec3 *v1);
+void			vec3_add(t_vec3 *v1, t_vec3 *v2);
+void			vec3_sub(t_vec3 *v1, t_vec3 *v2);
+void			vec3_mul(t_vec3 *v1, t_f64 r);
+
+/*
+** vec3_1.c
+*/
+
+void			vec3_set(t_vec3 *pt, t_f64 x, t_f64 y, t_f64 z);
+void			vec3_norm(t_vec3 *v1);
+t_f64			vec3_dot(t_vec3 *v1, t_vec3 *v2);
+t_f64			vec3_len(t_vec3 *v1);
+t_vec3			*vec3_cross(t_vec3 *v1, t_vec3 *v2);
 
 #endif
