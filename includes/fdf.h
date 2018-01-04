@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/22 00:11:50 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/04 16:38:35 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct	s_data {
 	t_mlx		mlx;
 }				t_data;
 
-int		map_get(char *filename, t_env *map);
-int		env_init(t_env *env, int width, int height);
-int		compute_img(t_env *env);
+int				map_get(char *filename, t_env *map);
+int				env_init(t_env *env, int width, int height);
+int				compute_img(t_env *env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 20:01:11 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/04 17:07:42 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		loop(void *param)
 
 	data = (t_data *)param;
 	compute_img(&(data->env));
-	ft_mlx_clear(&(data->mlx), MAIN_WIN);
+	data->mlx.win[MAIN_WIN].img = mlx_new_image(data->mlx.mlx, data->mlx.win[MAIN_WIN].width, data->mlx.win[MAIN_WIN].height);
 	i = 0;
 	while (i < data->env.obj_size[0])
 	{
@@ -45,6 +45,39 @@ int		loop(void *param)
 		}
 		i++;
 	}
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
+		data->mlx.win[MAIN_WIN].img, 0, 0);
+	mlx_destroy_image(data->mlx.mlx, data->mlx.win[MAIN_WIN].img);
+	return (1);
+}
+
+int		manage_key(int keycode, void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	if (keycode == K_ESC)
+		ft_mlx_exit();
+	if (keycode == K_UP)
+		data->env.camera.z += 20;
+	if (keycode == K_DOWN)
+		data->env.camera.z -= 20;
+	if (keycode == K_RIGHT)
+		data->env.camera.x += 10;
+	if (keycode == K_LEFT)
+		data->env.camera.x -= 10;
+	loop(param);
+	return (1);
+}
+int		move_auto(void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	data->env.ang.x += 0.5;
+	data->env.ang.y = 0;
+	data->env.ang.z = 120;
+	loop(param);
 	return (1);
 }
 
@@ -69,8 +102,9 @@ int		main(int argc, char **argv)
 	ft_mlx_init(&(data.mlx));
 	if (ft_mlx_win(&(data.mlx), WIDTH, HEIGHT, TITLE) == ERROR)
 		exit(EXIT_FAILURE);
-	mlx_key_hook(data.mlx.win[MAIN_WIN].win, &ft_mlx_exit, (void *)&data);
-	mlx_loop_hook(data.mlx.mlx, &loop, (void *)&data);
+	mlx_hook(data.mlx.win[MAIN_WIN].win, E_KEY_UP, 0,
+		&manage_key, (void *)&data);
+	mlx_loop_hook(data.mlx.mlx, &move_auto, (void *)&data);
 	mlx_loop(&(data.mlx));
 	return (EXIT_SUCCESS);
 }

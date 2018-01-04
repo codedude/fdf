@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:43:44 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/12 21:39:26 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/04 16:49:50 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 #include "mlx.h"
 #include "ft_mlx.h"
 
-int		ft_mlx_exit(int keycode, void *param)
+int		ft_mlx_exit(void)
 {
-	(void)param;
-	if (keycode == K_ESC)
-		exit(EXIT_SUCCESS);
-	return (1);
+	exit(EXIT_SUCCESS);
 }
 
 void	ft_mlx_init(t_mlx *mlx)
@@ -46,6 +43,7 @@ int		ft_mlx_win(t_mlx *mlx, int width, int height, char *title)
 		mlx->win[n].height = height;
 		mlx->win[n].title = ft_strdup(title);
 	}
+
 	return (n);
 }
 

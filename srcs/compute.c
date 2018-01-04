@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/22 00:42:22 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/04 16:37:52 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,8 @@ int			compute_img(t_env *env)
 	t_u64	i;
 	t_u64	j;
 	t_matrix	rot;
-	t_vec3		ang;
 
-	vec3_set(&(env->camera), 0, 0, -150);
-	vec3_set(&ang, 20., 0., 110.);
-	rot = matrix_rot(&ang);
+	rot = matrix_rot(&(env->ang));
 	i = 0;
 	while (i < env->obj_size[0])
 	{
@@ -48,7 +45,7 @@ int			compute_img(t_env *env)
 		while (j < env->obj_size[1])
 		{
 			vec3_set(&(env->img[i][j].vec3), env->obj[i][j].vec3.x,
-				env->obj[i][j].vec3.y, env->obj[i][j].vec3.z * 0.2);
+				env->obj[i][j].vec3.y, env->obj[i][j].vec3.z * 0.1);
 			matrix_mul3_vec3(rot, &(env->img[i][j].vec3));
 			vec3_sub(&(env->img[i][j].vec3), &(env->camera));
 			view_to_raster(&(env->img[i][j].vec3), &(env->screen));

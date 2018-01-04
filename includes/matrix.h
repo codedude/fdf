@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:53:53 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 23:55:11 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/01 16:21:15 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void			matrix_mul3(t_matrix m1, t_matrix m2);
 ** matrix_rot.c
 */
 
-# define		ROT_X	1
-# define		ROT_Y	2
-# define		ROT_Z	3
+# define ROT_X	1
+# define ROT_Y	2
+# define ROT_Z	3
 
 t_matrix		matrix_rot(t_vec3 *ang);
 
@@ -75,8 +75,8 @@ t_matrix		matrix_scale3(t_matrix mat, t_vec3 *v);
 # ifndef PI
 #  define PI	(3.141592653589793)
 # endif
-# define		DEG_TO_RAD (PI / 180.)
-# define		RAD_TO_DEG (180. / PI)
+# define DEG_TO_RAD (PI / 180.)
+# define RAD_TO_DEG (180. / PI)
 
 t_f64			deg_to_rad(t_f64 x);
 t_f64			rad_to_deg(t_f64 x);

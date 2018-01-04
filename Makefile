@@ -6,12 +6,13 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2017/12/21 18:38:42 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/04 14:27:25 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
-CC			=	cc
+CC			=	gcc
+
 SRCD		=	srcs
 INCD		=	includes
 LIBFTD		=	libft
@@ -24,12 +25,11 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/env.c $(SRCD)/compute.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -I$(LIBFTD) -I$(MLXD)
-
+CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3
 #Warnigs and debug
-LDFLAGS		+=	-Wextra -Wall -g
-LDLIBS		+=	$(LIBFTD)/libft.a $(MLXD)/libmlx.a -lm \
-				-lmlx -framework OpenGL -framework AppKit -fsanitize=address
+LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
+LDLIBS		+=	-L$(LIBFTD) -lft -L$(MLXD) -lmlx -lm \
+				-framework OpenGL -framework AppKit -fsanitize=address
 
 .PHONY: clean fclean re
 
@@ -49,7 +49,8 @@ clean:
 	@rm -vf $(OBJS)
 
 fclean: clean
-	@rm -vf $(LDLIBS)
+	make -C $(LIBFTD) __fclean
+	@rm -vf $(MLXD)/libmlx.a
 	@rm -vf $(NAME)
 
 re: fclean all

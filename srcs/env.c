@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 23:56:33 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/04 16:37:59 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int				env_init(t_env *env, int width, int height)
 	env->screen.width = (t_u32)width;
 	env->screen.height = (t_u32)height;
 	vec3_set(&(env->world), 0, 0, 0);
-	vec3_set(&(env->camera), 0, 0, -50);
+	vec3_set(&(env->camera), 0, 0, -100);
+	vec3_set(&(env->ang), 0, 0, 0);
 	env_init_obj(env->obj, env->obj_size);
 	if (env_init_img(&(env->img), env->obj_size) == ERROR)
 		return (ERROR);

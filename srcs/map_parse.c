@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:34:49 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/18 15:31:39 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/04 14:28:40 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "libft.h"
+#include "ft_input.h"
 #include "ft_mlx.h"
 #include "fdf.h"
 #include "matrix.h"
