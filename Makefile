@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/04 14:27:25 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/05 15:22:31 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3
 #Warnigs and debug
 LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(MLXD) -lmlx -lm \
-				-framework OpenGL -framework AppKit -fsanitize=address
+				-framework OpenGL -framework AppKit #-fsanitize=address
 
 .PHONY: clean fclean re
 

@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/04 17:34:57 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/05 17:00:36 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,17 @@
 # define C_BLACK		0x00000000
 # define C_GREY			0x00999999
 # define C_MOUNT		0x0080461B
-# define C_WATER		0x002EB3BF
-# define C_GRASS		0x0078EB60
+# define C_WATER		0x002EA3BF
+# define C_GRASS		0x00257F03
 # define C_SNOW			0x00DDDDDD
 # define C_DEEP			0x00003F69
-
-# define E_KEY_DOWN		0
-# define E_KEY_UP		3
-# define E_MOUSE_DOWN	4
-# define E_MOUSE_UP		5
-# define E_MOUSE_MOVE	6
-# define E_EXPOSE		12
 
 typedef int		t_color;
 
 typedef struct	s_win {
 	void		*win;
-	void		*img;
+	char		*img;
+	void		*__img;
 	int			width;
 	int			height;
 	char		*title;
@@ -78,9 +72,10 @@ typedef struct	s_env {
 	t_vertex	**obj;
 	t_vertex	**img;
 	t_u64		obj_size[2];
-	t_vec3		world;
 	t_vec3		camera;
 	t_vec3		ang;
+	double		altitude;
+	int			demo;
 }				t_env;
 
 /*

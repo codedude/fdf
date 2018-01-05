@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:38:30 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/04 17:44:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/05 17:29:27 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,11 @@ static void	draw_line(t_mlx *mlx, int win, t_pixel *p1, t_pixel *p2)
 	int		dir[2];
 	int		e[2];
 	t_color	*tmp;
-	char	*addr;
-	int endian;
-	int size_line;
-	int depth;
 	double	x;
 	double	y;
 
 	x = (double)p1->x;
 	y = (double)p1->y;
-	depth = sizeof(t_color) * 8;
-	size_line = sizeof(t_color) * WIDTH;
-	endian = 0;
-	addr = mlx_get_data_addr(mlx->win[win].img, &depth, &size_line, &endian);;
 	d[0] = abs(p2->x - p1->x);
 	d[1] = -abs(p2->y - p1->y);
 	dir[0] = (p1->x < p2->x) ? 1 : -1;
@@ -68,7 +60,8 @@ static void	draw_line(t_mlx *mlx, int win, t_pixel *p1, t_pixel *p2)
 	{
 		if (is_inscreen(p1->x, p1->y, WIDTH, HEIGHT))
 		{
-			tmp = (t_color *)(addr + (p1->y * size_line + p1->x * 4));
+			tmp = (t_color *)(mlx->win[win].img +
+				(p1->y * (mlx->win[win].width * 4) + p1->x * 4));
 			if (d[0] > -d[1])
 				*tmp = interpo(p1->c, p2->c,
 					fabs((double)p1->x - x) / (double)d[0]);

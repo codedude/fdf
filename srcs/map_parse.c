@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:34:49 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/04 14:28:40 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/05 15:33:52 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ static int	map_fill(t_vertex **map, char **buff, int l, int s)
 		(*map)[i].vec3.y = (t_f64)l;
 		(*map)[i].vec3.z = (t_f64)ft_atoi(buff[i]);
 		if ((tmp = ft_strchr(buff[i], ',')) != NULL)
-			(*map)[i].c = (t_color)ft_atoi_base(tmp + 1, CHARSET_BASE_16U);
+		{
+			(*map)[i].c = (t_color)ft_atoi_base(tmp + 3, CHARSET_BASE_16L);
+		}
 		else
-			(*map)[i].c = (t_color)C_WHITE;
+			(*map)[i].c = (t_color)-1;
 		free(buff[i]);
 		i++;
 	}

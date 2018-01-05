@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/04 16:38:35 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/05 17:12:13 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include "ft_mlx.h"
 # include "matrix.h"
 
-# define WIDTH		800
-# define HEIGHT		600
-# define TITLE		"FDF DX400"
+# define WIDTH		1920
+# define HEIGHT		1080
+# define TITLE		"FDF DX4000"
 
-# define MARGE		200
+# define MARGE		400
 
 typedef struct	s_data {
 	t_env		env;

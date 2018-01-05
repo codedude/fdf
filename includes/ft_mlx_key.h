@@ -6,12 +6,23 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 19:02:05 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/04 14:36:35 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/05 15:00:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MLX_KEY_H
 # define FT_MLX_KEY_H
+
+/*
+** Event hook
+*/
+
+# define E_KEY_DOWN		2
+# define E_KEY_UP		3
+# define E_MOUSE_DOWN	4
+# define E_MOUSE_UP		5
+# define E_MOUSE_MOVE	6
+# define E_EXPOSE		12
 
 /*
 ** Mouse, M_#
