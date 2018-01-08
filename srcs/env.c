@@ -26,7 +26,7 @@ static t_color	env_getcolor_alt(t_f64 z)
 		c = C_WATER;
 	else if (z < 90.)
 		c = C_GRASS;
-	else if (z < 250.)
+	else if (z < 300.)
 		c = C_MOUNT;
 	else
 		c = C_SNOW;

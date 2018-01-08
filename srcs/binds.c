@@ -17,30 +17,30 @@
 static void	key_down_3(int keycode, t_data *data)
 {
 	if (keycode == K_Q)
-		data->env.ang.x += 3.;
+		data->env.ang.x += 2.;
 	if (keycode == K_A)
-		data->env.ang.x -= 3.;
+		data->env.ang.x -= 2.;
 	if (keycode == K_W)
-		data->env.ang.y += 3.;
+		data->env.ang.y += 2.;
 	if (keycode == K_S)
-		data->env.ang.y -= 3.;
+		data->env.ang.y -= 2.;
 	if (keycode == K_E)
-		data->env.ang.z += 3.;
+		data->env.ang.z += 2.;
 	if (keycode == K_D)
-		data->env.ang.z -= 3.;
+		data->env.ang.z -= 2.;
 }
 
 static void	key_down_2(int keycode, t_data *data)
 {
 	if (keycode == K_T)
 	{
-		data->env.altitude += 0.02;
+		data->env.altitude += 0.01;
 		if (data->env.altitude > 1.)
 			data->env.altitude = 1.;
 	}
 	if (keycode == K_G)
 	{
-		data->env.altitude -= 0.02;
+		data->env.altitude -= 0.01;
 		if (data->env.altitude < 0.)
 			data->env.altitude = 0.;
 	}
@@ -54,13 +54,13 @@ int			manage_key_down(int keycode, void *param)
 	if (keycode == K_ESC)
 		env_destroy(data);
 	if (keycode == K_UP)
-		data->env.camera.y += 5.;
+		data->env.camera.y += 2.;
 	if (keycode == K_DOWN)
-		data->env.camera.y -= 5.;
+		data->env.camera.y -= 2.;
 	if (keycode == K_RIGHT)
-		data->env.camera.x -= 5.;
+		data->env.camera.x -= 2.;
 	if (keycode == K_LEFT)
-		data->env.camera.x += 5.;
+		data->env.camera.x += 2.;
 	key_down_2(keycode, data);
 	key_down_3(keycode, data);
 	return (1);

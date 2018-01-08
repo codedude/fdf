@@ -78,7 +78,7 @@ LIBFT_SRCS	+= $(INPUTD)/ft_gnl.c
 
 OBJS		= $(patsubst %.c, %.o, $(LIBFT_SRCS))
 LDFLAGS		+= -Werror -Wall -Wextra -ansi -pedantic -Wno-unused-result
-CFLAGS		+= -I$(INCD) -O3 -g
+CFLAGS		+= -I$(INCD) -O3
 
 .PHONY: clean fclean re showlib
 

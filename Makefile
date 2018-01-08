@@ -25,9 +25,9 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3  -g
+CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3
 #Warnigs and debug
-LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result #-fsanitize=undefined -fsanitize=address -g
+LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(MLXD) -lmlx -lm \
 				-framework OpenGL -framework AppKit
 
