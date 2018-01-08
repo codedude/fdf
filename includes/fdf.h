@@ -20,6 +20,8 @@
 # define TITLE		"FDF DX4000"
 
 # define MARGE		400
+# define VIEW_PAR	0
+# define VIEW_ISO	1
 
 typedef struct	s_data {
 	t_env		env;

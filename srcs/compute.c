@@ -18,13 +18,21 @@
 #include "matrix.h"
 #include "ft_math.h"
 
-static void		view_to_raster(t_vec3 *img, t_screen *scr)
+static void		view_to_raster(t_vec3 *img, t_screen *scr, int view)
 {
 	if (img->z > ZERO_FLOAT)
 	{
-		img->x = img->x / (img->z / scr->width) + (scr->width / 2.);
-		img->y = img->y / (img->z / (scr->height * scr->width / scr->height))
-				+ (scr->height / 2.);
+		if (view == VIEW_PAR)
+		{
+			img->x = img->x / (img->z / scr->width) + (scr->width / 2.);
+			img->y = img->y / (img->z
+			/ (scr->height * scr->width / scr->height)) + (scr->height / 2.);
+		}
+		else if (view == VIEW_ISO)
+		{
+		}
+			img->x = (img->x + scr->width / 2.);
+			img->y = (img->y + scr->height / 2.);
 	}
 }
 
@@ -45,7 +53,7 @@ static int		compute_img(t_env *env)
 				env->obj[i][j].vec3.y, env->obj[i][j].vec3.z * env->altitude);
 			matrix_mul3_vec3(rot, &(env->img[i][j].vec3));
 			vec3_sub(&(env->img[i][j].vec3), &(env->camera));
-			view_to_raster(&(env->img[i][j].vec3), &(env->screen));
+			view_to_raster(&(env->img[i][j].vec3), &(env->screen), env->view);
 			env->img[i][j].c = env->obj[i][j].c;
 			j++;
 		}
@@ -55,11 +63,37 @@ static int		compute_img(t_env *env)
 	return (SUCCESS);
 }
 
+static void		apply_effect(char *img)
+{
+	size_t	i;
+	int		r;
+	int		g;
+	int		b;
+	t_color	*pix;
+
+	i = 0;
+	pix = (t_color *)img;
+	while (i < WIDTH * HEIGHT)
+	{
+		if (pix[i] > 0)
+		{
+			r = ((pix[i] & C_RED) >> 17);
+			g = ((pix[i] & C_GREEN) >> 9);
+			b = (pix[i] & C_BLUE) >> 1;
+			pix[i] = 0 | (r << 16) | (g << 8)| b;
+		}
+		i++;
+	}
+}
+
 static void		clean_maps(t_data *data)
 {
 	size_t	i;
 
-	ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
+	if (data->env.effect)
+		apply_effect(data->mlx.win[MAIN_WIN].img);
+	else
+		ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
 	i = 0;
 	while (i < HEIGHT)
 	{

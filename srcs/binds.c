@@ -73,8 +73,10 @@ int			manage_key_up(int keycode, void *param)
 	data = (t_data *)param;
 	if (keycode == K_SPACE)
 		data->env.demo = !data->env.demo;
-	if (keycode == K_V)
+	if (keycode == K_C)
 		data->env.effect = !data->env.effect;
+	if (keycode == K_V)
+		data->env.view = !data->env.view;
 	return (1);
 }
 

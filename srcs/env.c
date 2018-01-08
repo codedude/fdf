@@ -93,6 +93,7 @@ int				env_init(t_env *env, int width, int height)
 	vec3_set(&(env->ang), 0, 0, 120);
 	env->demo = 1;
 	env->effect = 0;
+	env->view = VIEW_PAR;
 	env->altitude = 0.05;
 	env_init_obj(env->obj, env->obj_size);
 	if (env_init_img(&(env->img_z), &(env->img), env->obj_size) == ERROR)

@@ -78,6 +78,7 @@ typedef struct	s_env {
 	double		altitude;
 	int			demo;
 	int			effect;
+	int			view;
 }				t_env;
 
 /*
