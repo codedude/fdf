@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/05 17:00:36 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/08 12:56:09 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef int		t_color;
 typedef struct	s_win {
 	void		*win;
 	char		*img;
-	void		*__img;
+	void		*img__;
 	int			width;
 	int			height;
 	char		*title;
@@ -71,11 +71,13 @@ typedef struct	s_env {
 	t_screen	screen;
 	t_vertex	**obj;
 	t_vertex	**img;
+	MATRIX_T	**img_z;
 	t_u64		obj_size[2];
 	t_vec3		camera;
 	t_vec3		ang;
 	double		altitude;
 	int			demo;
+	int			effect;
 }				t_env;
 
 /*
@@ -99,14 +101,13 @@ void			ft_mlx_string(t_mlx *mlx, int win, t_pixel *pix, char *str);
 ** Pixel manipulation
 */
 
-void			ft_mlx_pixel_init(t_pixel *pix);
-void			ft_mlx_pixel3_init(t_pixel3 *pix3);
 t_color			ft_mlx_getcolor(int r, int g, int b);
 
 /*
 ** Line drawing
 */
 
-void			ft_mlx_line(t_mlx *mlx, int win, t_vertex *src, t_vertex *dest);
+void			ft_mlx_line(MATRIX_T **z, t_mlx *mlx, int win,
+							t_vertex *src, t_vertex *dest);
 
 #endif

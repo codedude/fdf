@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:53:53 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/01 16:21:15 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/08 13:56:28 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void			vec3_set(t_vec3 *pt, t_f64 x, t_f64 y, t_f64 z);
 void			vec3_norm(t_vec3 *v1);
 t_f64			vec3_dot(t_vec3 *v1, t_vec3 *v2);
 t_f64			vec3_len(t_vec3 *v1);
+t_f64			vec3_len_ns(t_vec3 *v1);
 t_vec3			*vec3_cross(t_vec3 *v1, t_vec3 *v2);
 
 #endif

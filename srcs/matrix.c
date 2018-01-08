@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 19:02:38 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 23:52:52 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/08 13:57:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include "libft.h"
 #include "matrix.h"
 
-void			matrix_getsize(int type, int *l, int *c)
+void		matrix_getsize(int type, int *l, int *c)
 {
 	*l = (type & MATRIX_L) >> 4;
 	*c = type & MATRIX_C;
 }
 
-t_matrix		matrix_new(int type, int init)
+t_matrix	matrix_new(int type, int init)
 {
 	int			l;
 	int			c;
@@ -43,7 +43,7 @@ t_matrix		matrix_new(int type, int init)
 	return (tmp);
 }
 
-void			matrix_del(int type, t_matrix *mat)
+void		matrix_del(int type, t_matrix *mat)
 {
 	int			l;
 	int			c;
@@ -59,13 +59,15 @@ void			matrix_del(int type, t_matrix *mat)
 	*mat = NULL;
 }
 
-void			matrix_mul3_vec3(t_matrix mat, t_vec3 *v)
+void		matrix_mul3_vec3(t_matrix mat, t_vec3 *v)
 {
 	MATRIX_T	tmp[1][3];
 	t_u32		j;
 
-	ft_bzero((void *)tmp[0], sizeof(MATRIX_T) * 3);
 	j = 0;
+	tmp[0][0] = 0;
+	tmp[0][1] = 0;
+	tmp[0][2] = 0;
 	while (j < 3)
 	{
 		tmp[0][j] += mat[0][j] * v->x;
@@ -73,7 +75,9 @@ void			matrix_mul3_vec3(t_matrix mat, t_vec3 *v)
 		tmp[0][j] += mat[2][j] * v->z;
 		j++;
 	}
-	vec3_set(v, tmp[0][0], tmp[0][1], tmp[0][2]);
+	v->x = tmp[0][0];
+	v->y = tmp[0][1];
+	v->z = tmp[0][2];
 }
 
 void		matrix_cpy3(t_matrix m1, t_matrix m2)

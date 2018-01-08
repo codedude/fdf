@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:56:56 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 17:31:42 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/08 13:56:12 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void			vec3_set(t_vec3 *v1, t_f64 x, t_f64 y, t_f64 z)
 t_f64			vec3_len(t_vec3 *v1)
 {
 	return (sqrt(v1->x * v1->x + v1->y * v1->y + v1->z * v1->z));
+}
+
+t_f64			vec3_len_ns(t_vec3 *v1)
+{
+	return (v1->x * v1->x + v1->y * v1->y + v1->z * v1->z);
 }
 
 void			vec3_norm(t_vec3 *v1)

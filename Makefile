@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/05 15:22:31 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/08 14:00:09 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,14 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/ft_line.c $(SRCD)/ft_stack.c $(SRCD)/map_parse.c \
 				$(SRCD)/matrix.c $(SRCD)/matrix_rot.c $(SRCD)/matrix_scale.c \
 				$(SRCD)/vec3_1.c $(SRCD)/vec3_2.c $(SRCD)/angle.c\
-				$(SRCD)/env.c $(SRCD)/compute.c
+				$(SRCD)/env.c $(SRCD)/compute.c $(SRCD)/binds.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3
+CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3  -g
 #Warnigs and debug
-LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
+LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result #-fsanitize=undefined -fsanitize=address -g
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(MLXD) -lmlx -lm \
-				-framework OpenGL -framework AppKit #-fsanitize=address
+				-framework OpenGL -framework AppKit
 
 .PHONY: clean fclean re
 

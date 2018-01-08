@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:43:44 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/05 17:22:19 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/08 11:01:07 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,21 @@ int		ft_mlx_win(t_mlx *mlx, int width, int height, char *title)
 	if (n == MLX_MAX_WINDOW)
 		return (ERROR);
 	if ((mlx->win[n].win = mlx_new_window(mlx->mlx, width, height, title))
-		!= NULL)
-	{
-		mlx->win[n].width = width;
-		mlx->win[n].height = height;
-		mlx->win[n].title = ft_strdup(title);
-		mlx->win[n].__img = mlx_new_image(mlx->mlx, width, height);
-		mlx->win[n].img = mlx_get_data_addr(mlx->win[n].__img,
-			&depth, &size_line, &endian);
-	}
-
+		== NULL)
+		return (ERROR);
+	mlx->win[n].width = width;
+	mlx->win[n].height = height;
+	mlx->win[n].title = ft_strdup(title);
+	mlx->win[n].img__ = mlx_new_image(mlx->mlx, width, height);
+	mlx->win[n].img = mlx_get_data_addr(mlx->win[n].img__,
+		&depth, &size_line, &endian);
 	return (n);
 }
 
 void	ft_mlx_destroy(t_mlx *mlx, int win)
 {
 	mlx_destroy_window(mlx->mlx, mlx->win[win].win);
-	mlx_destroy_image(mlx->mlx, mlx->win[win].img);
+	mlx_destroy_image(mlx->mlx, mlx->win[win].img__);
 	ft_strdel(&(mlx->win[win].title));
 	ft_bzero((void *)&(mlx->win[win]), sizeof(t_win));
 }
