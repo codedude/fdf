@@ -30,9 +30,9 @@ static void		view_to_raster(t_vec3 *img, t_screen *scr, int view)
 		}
 		else if (view == VIEW_ISO)
 		{
-		}
 			img->x = (img->x + scr->width / 2.);
 			img->y = (img->y + scr->height / 2.);
+		}
 	}
 }
 
