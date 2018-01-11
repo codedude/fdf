@@ -15,12 +15,6 @@
 #include "libft.h"
 #include "matrix.h"
 
-void		matrix_getsize(int type, int *l, int *c)
-{
-	*l = (type & MATRIX_L) >> 4;
-	*c = type & MATRIX_C;
-}
-
 t_matrix	matrix_new(int type, int init)
 {
 	int			l;
@@ -103,7 +97,6 @@ void		matrix_mul3(t_matrix m1, t_matrix m2)
 	t_matrix	tmp;
 	t_u32		i;
 	t_u32		j;
-	t_u32		k;
 
 	if ((tmp = matrix_new(MATRIX_33, MATRIX_NOSET)) == NULL)
 		return ;
@@ -113,13 +106,9 @@ void		matrix_mul3(t_matrix m1, t_matrix m2)
 		j = 0;
 		while (j < 3)
 		{
-			k = 0;
-			tmp[i][j] = 0;
-			while (k < 3)
-			{
-				tmp[i][j] += m1[i][k] * m2[k][j];
-				k++;
-			}
+			tmp[i][j] = m1[i][0] * m2[0][j];
+			tmp[i][j] += m1[i][1] * m2[1][j];
+			tmp[i][j] += m1[i][2] * m2[2][j];
 			j++;
 		}
 		i++;

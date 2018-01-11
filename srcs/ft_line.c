@@ -19,30 +19,6 @@
 #include "fdf.h"
 #include "matrix.h"
 
-static int		is_inscreen(int x, int y, int width, int height)
-{
-	if (x < 0 || x >= width)
-		return (0);
-	if (y < 0 || y >= height)
-		return (0);
-	return (1);
-}
-
-static int		is_bound(t_vec3 *p1, t_vec3 *p2, int width, int height)
-{
-	if (p1->x < -MARGE || p1->x > width + MARGE)
-		return (0);
-	if (p1->y < -MARGE || p1->y > height + MARGE)
-		return (0);
-	if (p2->x < -MARGE || p2->x > width + MARGE)
-		return (0);
-	if (p2->y < -MARGE || p2->y > height + MARGE)
-		return (0);
-	if (p1->z < ZERO_FLOAT || p2->z < ZERO_FLOAT)
-		return (0);
-	return (1);
-}
-
 static t_color	interpo(t_color c1, t_color c2, double step)
 {
 	int	r;
@@ -55,61 +31,67 @@ static t_color	interpo(t_color c1, t_color c2, double step)
 	return (0 | (r << 16) | (g << 8) | b);
 }
 
-static void		draw_line(MATRIX_T **z, t_mlx *mlx, int win,
-						t_vertex *p1, t_vertex *p2)
+static void		next_step(int d[2], int dir[2], int e[2], t_vertex *p1)
+{
+	e[1] = 2 * e[0];
+	if (e[1] >= d[1])
+	{
+		e[0] += d[1];
+		p1->vec3.x += dir[0];
+	}
+	if (e[1] <= d[0])
+	{
+		e[0] += d[0];
+		p1->vec3.y += dir[1];
+	}
+}
+
+static t_color	new_value(int d[2], double xyl[3], t_vertex *p1, t_vertex *p2)
+{
+	if (d[0] != 0 && (d[0] > -d[1]))
+	{
+		return (interpo(p1->c, p2->c,
+			fabs((double)p1->vec3.x - xyl[0]) / (double)d[0]));
+	}
+	else if (d[1] != 0)
+	{
+		return (interpo(p1->c, p2->c,
+			fabs((double)p1->vec3.y - xyl[1]) / (double)-d[1]));
+	}
+	return (p1->c);
+}
+
+static void		draw_line(MATRIX_T **z, char *img, t_vertex *p1, t_vertex *p2)
 {
 	int		d[2];
 	int		dir[2];
 	int		e[2];
 	t_color	*tmp;
-	double	x;
-	double	y;
-	double	len;
+	double	xyl[3];
 
-	x = (double)p1->vec3.x;
-	y = (double)p1->vec3.y;
-	d[0] = (int)fabs(p2->vec3.x - p1->vec3.x);
-	d[1] = (int)-fabs(p2->vec3.y - p1->vec3.y);
-	dir[0] = (p1->vec3.x < p2->vec3.x) ? 1 : -1;
-	dir[1] = (p1->vec3.y < p2->vec3.y) ? 1 : -1;
+	xyl[0] = (double)p1->vec3.x;
+	xyl[1] = (double)p1->vec3.y;
+	init_param(d, dir, p1, p2);
 	e[0] = d[0] + d[1];
 	while (1)
 	{
 		if (is_inscreen((int)p1->vec3.x, (int)p1->vec3.y, WIDTH, HEIGHT))
-		{
-			len = vec3_len_ns(&(p1->vec3));
-			if (len < z[(int)p1->vec3.y][(int)p1->vec3.x])
+			if ((xyl[2] = vec3_len_ns(&(p1->vec3)))
+				< z[(int)p1->vec3.y][(int)p1->vec3.x])
 			{
-				z[(int)p1->vec3.y][(int)p1->vec3.x] = len;
-				tmp = (t_color *)(mlx->win[win].img + (int)
-					(p1->vec3.y * (mlx->win[win].width * 4)
+				z[(int)p1->vec3.y][(int)p1->vec3.x] = xyl[2];
+				tmp = (t_color *)(img + (int)(p1->vec3.y * (WIDTH * 4)
 					+ (int)p1->vec3.x * 4));
-				if (d[0] != 0 && (d[0] > -d[1]))
-					*tmp = interpo(p1->c, p2->c,
-						fabs((double)p1->vec3.x - x) / (double)d[0]);
-				else if (d[1] != 0)
-					*tmp = interpo(p1->c, p2->c,
-						fabs((double)p1->vec3.y - y) / (double)-d[1]);
+				*tmp = new_value(d, xyl, p1, p2);
 			}
-		}
 		if (p1->vec3.x == p2->vec3.x && p1->vec3.y == p2->vec3.y)
 			break ;
-		e[1] = 2 * e[0];
-		if (e[1] >= d[1])
-		{
-			e[0] += d[1];
-			p1->vec3.x += dir[0];
-		}
-		if (e[1] <= d[0])
-		{
-			e[0] += d[0];
-			p1->vec3.y += dir[1];
-		}
+		next_step(d, dir, e, p1);
 	}
 }
 
-void			ft_mlx_line(MATRIX_T **z, t_mlx *mlx, int win,
-							t_vertex *src, t_vertex *dest)
+void			ft_mlx_line(t_env *env, t_mlx *mlx, t_vertex *src,
+							t_vertex *dest)
 {
 	t_vertex	p1;
 	t_vertex	p2;
@@ -124,6 +106,6 @@ void			ft_mlx_line(MATRIX_T **z, t_mlx *mlx, int win,
 		p2.vec3.y = floor(dest->vec3.y);
 		p2.vec3.z = dest->vec3.z;
 		p2.c = dest->c;
-		draw_line(z, mlx, win, &p1, &p2);
+		draw_line(env->img_z, mlx->win[MAIN_WIN].img, &p1, &p2);
 	}
 }

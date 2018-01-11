@@ -99,7 +99,6 @@ void			vec3_mul(t_vec3 *v1, t_f64 r);
 
 void			vec3_set(t_vec3 *pt, t_f64 x, t_f64 y, t_f64 z);
 void			vec3_norm(t_vec3 *v1);
-t_f64			vec3_dot(t_vec3 *v1, t_vec3 *v2);
 t_f64			vec3_len(t_vec3 *v1);
 t_f64			vec3_len_ns(t_vec3 *v1);
 t_vec3			*vec3_cross(t_vec3 *v1, t_vec3 *v2);

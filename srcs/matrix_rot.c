@@ -15,6 +15,12 @@
 #include "libft.h"
 #include "matrix.h"
 
+void			matrix_getsize(int type, int *l, int *c)
+{
+	*l = (type & MATRIX_L) >> 4;
+	*c = type & MATRIX_C;
+}
+
 static void		matrix_set_rot_x(t_matrix rot, t_f64 ang)
 {
 	t_f64	c;

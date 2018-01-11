@@ -6,7 +6,7 @@
 #    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/08 14:00:04 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/11 12:23:40 by vparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LIBFT_SRCS	+= $(STRINGD)/ft_strncpy.c $(STRINGD)/ft_strsub.c \
 			$(STRINGD)/ft_strrev.c $(STRINGD)/ft_strdup.c \
 			$(STRINGD)/ft_strnew_fast.c $(STRINGD)/ft_strjoin.c \
 			$(STRINGD)/ft_strcmp.c $(STRINGD)/ft_strrchr.c \
-			$(STRINGD)/ft_strcpy.c \
+			$(STRINGD)/ft_strcpy.c $(STRINGD)/ft_strsplit_free.c \
 			$(STRINGD)/ft_strdel.c $(STRINGD)/ft_strtrim.c \
 			$(STRINGD)/ft_strnew.c $(STRINGD)/ft_strncmp.c
 LIBFT_SRCS	+= $(MEMORYD)/ft_memccpy_fast.c $(MEMORYD)/ft_memset.c \

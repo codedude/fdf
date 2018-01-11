@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:34:49 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 13:10:55 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 12:25:21 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,29 @@ static int	map_fill(t_vertex **map, char **buff, int l, int s)
 		free(buff[i]);
 		i++;
 	}
+	free(buff);
 	return (SUCCESS);
 }
 
 static int	map_parse(t_stack **stack, t_env *map, int n)
 {
 	char	**buff;
+	char	*input;
 	int		i;
 	int		s;
 
 	i = 0;
 	while (i < n)
 	{
-		if ((buff = ft_strsplit_whitespaces(ft_stackpop(stack))) == NULL)
+		input = ft_stackpop(stack);
+		if ((buff = ft_strsplit_whitespaces(input)) == NULL)
 			return (ERROR);
 		s = 0;
 		while (buff[s] != NULL)
 			s++;
 		map->obj_size[1] = (t_u64)s;
 		map_fill(&(map->obj[n - i - 1]), buff, i, s);
-		free(buff);
+		free(input);
 		i++;
 	}
 	return (SUCCESS);

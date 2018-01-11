@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 12:56:09 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 12:05:49 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,10 @@ t_color			ft_mlx_getcolor(int r, int g, int b);
 ** Line drawing
 */
 
-void			ft_mlx_line(MATRIX_T **z, t_mlx *mlx, int win,
+void			ft_mlx_line(t_env *env, t_mlx *mlx,
 							t_vertex *src, t_vertex *dest);
+int				is_inscreen(int x, int y, int width, int height);
+int				is_bound(t_vec3 *p1, t_vec3 *p2, int width, int height);
+void			init_param(int d[2], int dir[2], t_vertex *p1, t_vertex *p2);
 
 #endif

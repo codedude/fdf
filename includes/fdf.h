@@ -34,6 +34,8 @@ void			env_destroy(t_data *data);
 int				manage_key_down(int keycode, void *param);
 int				manage_key_up(int keycode, void *param);
 int				manage_mouse(int keycode, int x, int y, void *param);
-int				loop(void *param);
+int				compute_img(t_env *env);
+void			clean_maps(t_data *data);
+void			draw_img(t_data *data);
 
 #endif

@@ -36,7 +36,7 @@ static void		view_to_raster(t_vec3 *img, t_screen *scr, int view)
 	}
 }
 
-static int		compute_img(t_env *env)
+int				compute_img(t_env *env)
 {
 	t_u64		i;
 	t_u64		j;
@@ -80,13 +80,13 @@ static void		apply_effect(char *img)
 			r = ((pix[i] & C_RED) >> 17);
 			g = ((pix[i] & C_GREEN) >> 9);
 			b = (pix[i] & C_BLUE) >> 1;
-			pix[i] = 0 | (r << 16) | (g << 8)| b;
+			pix[i] = 0 | (r << 16) | (g << 8) | b;
 		}
 		i++;
 	}
 }
 
-static void		clean_maps(t_data *data)
+void			clean_maps(t_data *data)
 {
 	size_t	i;
 
@@ -102,15 +102,11 @@ static void		clean_maps(t_data *data)
 	}
 }
 
-int				loop(void *param)
+void			draw_img(t_data *data)
 {
-	t_data	*data;
-	t_u64	i;
-	t_u64	j;
+	t_u32	i;
+	t_u32	j;
 
-	data = (t_data *)param;
-	compute_img(&(data->env));
-	clean_maps(data);
 	i = 0;
 	while (i < data->env.obj_size[0])
 	{
@@ -118,16 +114,13 @@ int				loop(void *param)
 		while (j < data->env.obj_size[1])
 		{
 			if (i + 1 < data->env.obj_size[0])
-				ft_mlx_line(data->env.img_z, &(data->mlx), MAIN_WIN,
+				ft_mlx_line(&(data->env), &(data->mlx),
 					&(data->env.img[i][j]), &(data->env.img[i + 1][j]));
 			if (j + 1 < data->env.obj_size[1])
-				ft_mlx_line(data->env.img_z, &(data->mlx), MAIN_WIN,
+				ft_mlx_line(&(data->env), &(data->mlx),
 					&(data->env.img[i][j]), &(data->env.img[i][j + 1]));
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win[MAIN_WIN].win,
-		data->mlx.win[MAIN_WIN].img__, 0, 0);
-	return (1);
 }

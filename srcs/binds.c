@@ -13,7 +13,6 @@
 #include "ft_mlx.h"
 #include "fdf.h"
 
-
 static void	key_down_3(int keycode, t_data *data)
 {
 	if (keycode == K_Q)
