@@ -6,13 +6,19 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 18:29:45 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 18:35:14 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 13:55:33 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "matrix.h"
+
+void			matrix_getsize(int type, int *l, int *c)
+{
+	*l = (type & MATRIX_L) >> 4;
+	*c = type & MATRIX_C;
+}
 
 t_matrix		matrix_id3(t_matrix mat)
 {

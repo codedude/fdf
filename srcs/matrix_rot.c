@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:33:10 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/22 00:28:03 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 13:55:38 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include <math.h>
 #include "libft.h"
 #include "matrix.h"
-
-void			matrix_getsize(int type, int *l, int *c)
-{
-	*l = (type & MATRIX_L) >> 4;
-	*c = type & MATRIX_C;
-}
 
 static void		matrix_set_rot_x(t_matrix rot, t_f64 ang)
 {
