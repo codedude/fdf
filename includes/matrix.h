@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:53:53 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 13:56:28 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:23:01 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,7 @@ void			matrix_mul3(t_matrix m1, t_matrix m2);
 # define ROT_Y	2
 # define ROT_Z	3
 
-t_matrix		matrix_rot(t_vec3 *ang);
-
-/*
-** matrix_scale.c
-*/
-
-t_matrix		matrix_id3(t_matrix mat);
-t_matrix		matrix_scale3(t_matrix mat, t_vec3 *v);
+t_matrix		matrix_rot(t_vec3 *ang, int view);
 
 /*
 ** angle.c

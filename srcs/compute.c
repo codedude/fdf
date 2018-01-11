@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 13:42:43 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:10:08 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,13 @@
 #include "matrix.h"
 #include "ft_math.h"
 
-static void		view_to_raster(t_vec3 *img, t_screen *scr, int view)
+static void		view_to_raster(t_vec3 *img, t_screen *scr)
 {
 	if (img->z > ZERO_FLOAT)
 	{
-		if (view == VIEW_PAR)
-		{
-			img->x = img->x / (img->z / scr->width) + (scr->width / 2.);
-			img->y = img->y / (img->z
-			/ (scr->height * scr->width / scr->height)) + (scr->height / 2.);
-		}
-		else if (view == VIEW_ISO)
-		{
-			img->x = (img->x + scr->width / 2.);
-			img->y = (img->y + scr->height / 2.);
-		}
+		img->x = img->x / (img->z / scr->width) + (scr->width / 2.);
+		img->y = img->y / (img->z
+		/ (scr->height * scr->width / scr->height)) + (scr->height / 2.);
 	}
 }
 
@@ -42,7 +34,7 @@ int				compute_img(t_env *env)
 	t_u64		j;
 	t_matrix	rot;
 
-	rot = matrix_rot(&(env->ang));
+	rot = matrix_rot(&(env->ang), env->view);
 	i = 0;
 	while (i < env->obj_size[0])
 	{
@@ -53,7 +45,7 @@ int				compute_img(t_env *env)
 				env->obj[i][j].vec3.y, env->obj[i][j].vec3.z * env->altitude);
 			matrix_mul3_vec3(rot, &(env->img[i][j].vec3));
 			vec3_sub(&(env->img[i][j].vec3), &(env->camera));
-			view_to_raster(&(env->img[i][j].vec3), &(env->screen), env->view);
+			view_to_raster(&(env->img[i][j].vec3), &(env->screen));
 			env->img[i][j].c = env->obj[i][j].c;
 			j++;
 		}
