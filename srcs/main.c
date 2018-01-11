@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 14:09:46 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:24:39 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			main(int argc, char **argv)
 	t_data	data;
 	char	buff[3];
 
-	/*fgets(buff, 2, stdin);*/
+	fgets(buff, 2, stdin);
 	if (argc != 2)
 	{
 		ft_putstr("fdf : ./fdf MAP\n");
