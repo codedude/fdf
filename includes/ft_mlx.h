@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:44:18 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 12:05:49 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 14:50:34 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ typedef struct	s_env {
 	double		altitude;
 	int			demo;
 	int			effect;
+	int			effect_value;
 	int			view;
+	int			key_down;
 }				t_env;
 
 /*

@@ -6,31 +6,25 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 09:53:02 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 13:30:33 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 14:43:44 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_mlx.h"
 #include "fdf.h"
 
-static void	key_down_3(int keycode, t_data *data)
-{
-	if (keycode == K_Q)
-		data->env.ang.x += 2.;
-	if (keycode == K_A)
-		data->env.ang.x -= 2.;
-	if (keycode == K_W)
-		data->env.ang.y += 2.;
-	if (keycode == K_S)
-		data->env.ang.y -= 2.;
-	if (keycode == K_E)
-		data->env.ang.z += 2.;
-	if (keycode == K_D)
-		data->env.ang.z -= 2.;
-}
-
 static void	key_down_2(int keycode, t_data *data)
 {
+	if (keycode == K_Y)
+	{
+		if (data->env.effect_value <= 253)
+			data->env.effect_value += 1;
+	}
+	if (keycode == K_H)
+	{
+		if (data->env.effect_value >= 2)
+			data->env.effect_value -= 1;
+	}
 	if (keycode == K_T)
 	{
 		data->env.altitude += 0.01;
@@ -45,23 +39,42 @@ static void	key_down_2(int keycode, t_data *data)
 	}
 }
 
+void		key_down(t_data *data)
+{
+	int	keycode;
+
+	keycode = data->env.key_down;
+	if (keycode == K_Q)
+		data->env.ang.x += 1.;
+	if (keycode == K_A)
+		data->env.ang.x -= 1.;
+	if (keycode == K_W)
+		data->env.ang.y += 1.;
+	if (keycode == K_S)
+		data->env.ang.y -= 1.;
+	if (keycode == K_E)
+		data->env.ang.z += 1.;
+	if (keycode == K_D)
+		data->env.ang.z -= 1.;
+	if (keycode == K_UP)
+		data->env.camera.y += 1.;
+	if (keycode == K_DOWN)
+		data->env.camera.y -= 1.;
+	if (keycode == K_RIGHT)
+		data->env.camera.x -= 1.;
+	if (keycode == K_LEFT)
+		data->env.camera.x += 1.;
+	key_down_2(keycode, data);
+}
+
 int			manage_key_down(int keycode, void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
+	data->env.key_down = keycode;
 	if (keycode == K_ESC)
 		env_destroy(data);
-	if (keycode == K_UP)
-		data->env.camera.y += 2.;
-	if (keycode == K_DOWN)
-		data->env.camera.y -= 2.;
-	if (keycode == K_RIGHT)
-		data->env.camera.x -= 2.;
-	if (keycode == K_LEFT)
-		data->env.camera.x += 2.;
-	key_down_2(keycode, data);
-	key_down_3(keycode, data);
 	return (1);
 }
 
@@ -70,6 +83,7 @@ int			manage_key_up(int keycode, void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	data->env.key_down = -1;
 	if (keycode == K_SPACE)
 		data->env.demo = !data->env.demo;
 	if (keycode == K_C)

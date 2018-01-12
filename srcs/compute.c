@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 14:10:08 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 14:41:25 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				compute_img(t_env *env)
 	return (SUCCESS);
 }
 
-static void		apply_effect(char *img)
+static void		apply_effect(char *img, int value)
 {
 	size_t	i;
 	int		r;
@@ -69,9 +69,12 @@ static void		apply_effect(char *img)
 	{
 		if (pix[i] > 0)
 		{
-			r = ((pix[i] & C_RED) >> 17);
-			g = ((pix[i] & C_GREEN) >> 9);
-			b = (pix[i] & C_BLUE) >> 1;
+			r = ((pix[i] & C_RED) >> 16);
+			g = ((pix[i] & C_GREEN) >> 8);
+			b = (pix[i] & C_BLUE);
+			r = r > value ? r - value : 0;
+			g = g > value ? g - value : 0;
+			b = b > value ? b - value : 0;
 			pix[i] = 0 | (r << 16) | (g << 8) | b;
 		}
 		i++;
@@ -83,7 +86,7 @@ void			clean_maps(t_data *data)
 	size_t	i;
 
 	if (data->env.effect)
-		apply_effect(data->mlx.win[MAIN_WIN].img);
+		apply_effect(data->mlx.win[MAIN_WIN].img, data->env.effect_value);
 	else
 		ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
 	i = 0;

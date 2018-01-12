@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 00:26:13 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/08 11:39:47 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 14:37:22 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static t_color	env_getcolor_alt(t_f64 z)
 {
 	t_color	c;
 
-	if (z < -30.)
+	if (z < -32.)
 		c = C_DEEP;
 	else if (z < 3.)
 		c = C_WATER;
-	else if (z < 90.)
+	else if (z < 100.)
 		c = C_GRASS;
-	else if (z < 300.)
+	else if (z < 400.)
 		c = C_MOUNT;
 	else
 		c = C_SNOW;
@@ -89,10 +89,17 @@ int				env_init(t_env *env, int width, int height)
 {
 	env->screen.width = (t_u32)width;
 	env->screen.height = (t_u32)height;
-	vec3_set(&(env->camera), 0, 0, -100);
+	if (env->obj_size[0] > 400 || env->obj_size[1] > 400)
+		vec3_set(&(env->camera), 0, 0, -600);
+	else if (env->obj_size[0] > 80 || env->obj_size[1] > 80)
+		vec3_set(&(env->camera), 0, 0, -150);
+	else
+		vec3_set(&(env->camera), 0, 0, -80);
 	vec3_set(&(env->ang), 0, 0, 120);
 	env->demo = 1;
+	env->key_down = -1;
 	env->effect = 0;
+	env->effect_value = 8;
 	env->view = VIEW_PAR;
 	env->altitude = 0.05;
 	env_init_obj(env->obj, env->obj_size);

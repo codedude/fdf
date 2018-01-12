@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 17:52:32 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 14:24:39 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 14:17:04 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static int	move_auto(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
+	key_down(data);
 	if (data->env.demo == 1)
-		data->env.ang.x += 0.4;
+		data->env.ang.x += 0.33;
 	loop(param);
 	return (1);
 }

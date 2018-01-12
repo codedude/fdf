@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 17:34:49 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/11 12:25:21 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 14:56:05 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,25 @@ static int	map_parse(t_stack **stack, t_env *map, int n)
 	char	**buff;
 	char	*input;
 	int		i;
-	int		s;
+	int		s[2];
 
 	i = 0;
 	while (i < n)
 	{
 		input = ft_stackpop(stack);
 		if ((buff = ft_strsplit_whitespaces(input)) == NULL)
+		{
+			free(input);
 			return (ERROR);
-		s = 0;
-		while (buff[s] != NULL)
-			s++;
-		map->obj_size[1] = (t_u64)s;
-		map_fill(&(map->obj[n - i - 1]), buff, i, s);
+		}
 		free(input);
+		s[0] = 0;
+		while (buff[s[0]] != NULL)
+			s[0]++;
+		if (s[0] != (s[1] = map->obj_size[1]) && s[1] != 0)
+			return (ERROR);
+		map->obj_size[1] = (t_u64)s[0];
+		map_fill(&(map->obj[n - i - 1]), buff, i, s[0]);
 		i++;
 	}
 	return (SUCCESS);
@@ -108,7 +113,7 @@ int			map_get(char *filename, t_env *map)
 		ft_stackclear(&stack);
 		return (ERROR);
 	}
-	map->obj_size[0] = (t_u64)n;
-	map_parse(&stack, map, n);
-	return (SUCCESS);
+	map->obj_size[0] = n;
+	map->obj_size[1] = 0;
+	return (map_parse(&stack, map, n));
 }

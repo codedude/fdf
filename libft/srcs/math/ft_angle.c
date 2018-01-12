@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 17:57:00 by vparis            #+#    #+#             */
-/*   Updated: 2017/12/21 18:39:15 by vparis           ###   ########.fr       */
+/*   Created: 2018/01/12 13:48:10 by vparis            #+#    #+#             */
+/*   Updated: 2018/01/12 13:48:35 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "libft.h"
-#include "matrix.h"
+#include "ft_type.h"
+#include "ft_math.h"
 
 t_f64		deg_to_rad(t_f64 x)
 {
