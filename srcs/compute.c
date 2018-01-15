@@ -6,7 +6,7 @@
 /*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 14:47:10 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/12 14:41:25 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/12 15:04:18 by vparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void			clean_maps(t_data *data)
 	if (data->env.effect)
 		apply_effect(data->mlx.win[MAIN_WIN].img, data->env.effect_value);
 	else
-		ft_bzero((void *)data->mlx.win[MAIN_WIN].img, 4 * WIDTH * HEIGHT);
+		ft_memset((void *)data->mlx.win[MAIN_WIN].img, 0, 4 * WIDTH * HEIGHT);
 	i = 0;
 	while (i < HEIGHT)
 	{
