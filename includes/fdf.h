@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vparis <vparis@student.42.fr>              +#+  +:+       +#+        */
+/*   By: valentin <valentin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 04:21:59 by vparis            #+#    #+#             */
-/*   Updated: 2018/01/12 14:17:09 by vparis           ###   ########.fr       */
+/*   Updated: 2018/01/23 19:11:22 by valentin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "ft_mlx.h"
 
-# define WIDTH		1920
-# define HEIGHT		1080
+# define WIDTH		1600
+# define HEIGHT		1000
 # define TITLE		"FDF DX4000"
 
 # define MARGE		400

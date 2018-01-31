@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vparis <vparis@student.42.fr>              +#+  +:+       +#+         #
+#    By: valentin <valentin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/02 17:37:24 by vparis            #+#    #+#              #
-#    Updated: 2018/01/15 10:12:27 by vparis           ###   ########.fr        #
+#    Updated: 2018/01/31 18:02:30 by valentin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
-CC			=	gcc
+CC			=	clang
 
 SRCD		=	srcs
 INCD		=	includes
@@ -26,7 +26,7 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/ft_line2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3
+CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3 -flto -march=native
 #Warnigs and debug
 LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(MLXD) -lmlx -lm \
