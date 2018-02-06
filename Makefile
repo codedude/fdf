@@ -26,7 +26,8 @@ SRCS		=	$(SRCD)/main.c $(SRCD)/ft_mlx.c $(SRCD)/ft_pixel.c \
 				$(SRCD)/ft_line2.c
 OBJS		=	$(patsubst %.c, %.o, $(SRCS))
 
-CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3
+CFLAGS		+=	-I$(INCD) -I$(LIBFTD)/includes -I$(MLXD) -O3 -march=native \
+				-flto
 #Warnigs and debug
 LDFLAGS		+=	-Wextra -Wall -ansi -pedantic -Wno-unused-result
 LDLIBS		+=	-L$(LIBFTD) -lft -L$(MLXD) -lmlx -lm \

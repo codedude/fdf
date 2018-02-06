@@ -12,6 +12,8 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
+#include <stdio.h>
 #include <fcntl.h>
 #include "libft.h"
 #include "ft_input.h"
@@ -22,12 +24,12 @@
 
 static int	map_read(char *filename, t_stack **stack)
 {
-	int			fd;
-	int			n;
-	int			r;
-	char		*buff;
+	volatile int	r;
+	int				fd;
+	int				n;
+	char			*buff;
 
-	if ((fd = open(filename, O_RDONLY)) == -1)
+	if ((fd = open(filename, O_RDONLY | O_NONBLOCK | O_NOFOLLOW)) < 0)
 		return (ERROR);
 	n = 0;
 	while ((r = ft_gnl(fd, &buff)) > 0)
